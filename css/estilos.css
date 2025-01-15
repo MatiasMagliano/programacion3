@@ -1,0 +1,53 @@
+:root {
+  --background: #1d2d50;
+  --accent: #fcdab7;
+  --accent2: #1e5f74;
+  --color: #fefefe;
+  --dull: #b8b8b8;
+  --error: #e74c3c;
+  --highlight: rgba(255,255,255,.05);
+ }
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.errcontainer {
+  font-size: 14px;
+  opacity: 1;
+  transition: opacity .3s;
+}
+
+.err {
+	margin: 5px 0;
+	color: var(--error);
+}
+
+.err ul {
+	list-style-type: none;
+	margin: 0;
+	padding-inline-start: 2em;
+}
