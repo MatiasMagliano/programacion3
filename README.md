@@ -5,7 +5,7 @@
 Pequeño sitio de código abierto perteneciente a la cátedra de PROGRAMACIÓN III del colegio técnico IPET Nº363 de la ciudad de Monte Cristo, Córdoba, Argentina.
 
 ## Créditos
-- [SecureAuthSystem](https://github.com/Code-Break0/SecureAuthSystem)
+- Módulo de log-in: [SecureAuthSystem](https://github.com/Code-Break0/SecureAuthSystem)
 
 ## License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
