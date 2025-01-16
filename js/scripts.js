@@ -58,7 +58,64 @@ function login() {
 function logout() {
 	request('utilidades/salir.php', false, function(data) {
 		if(data === '0') {
-			window.location = './';
+			window.location = 'index.php';
 		}
+	});
+}
+
+function publicar(id) {
+	request('utilidades/publicar.php', '#formPublicarContenido', function(data) {
+		document.getElementById('errores').innerHTML = "";
+		var transition = document.getElementById('errores').style.transition;
+		document.getElementById('errores').style.transition = "none";
+		document.getElementById('errores').style.opacity = 0;
+		switch(data) {
+			case '0':
+				window.location = './';
+				break;
+			case '1':
+				document.getElementById('errores').innerHTML += '<div class="err">No se ha podido publicar el anuncio</div>';
+				break;
+			case '2':
+				document.getElementById('errores').innerHTML += '<div class="err">Fallo en conexión a la base de datos. Por favor inténtelo más tarde</div>';
+				break;
+			case '3':
+				document.getElementById('errores').innerHTML += '<div class="err">No tienes permiso para publicar o no seleccionó contenido</div>';
+				break;
+			case '4':
+				document.getElementById('errores').innerHTML += '<div class="err">No se ha podido subir la imagen</div>';
+				break;
+			default:
+				document.getElementById('errores').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';
+		}
+		setTimeout(function() {
+			document.getElementById('errores').style.transition = transition;
+			document.getElementById('errores').style.opacity = 1;
+		}, 10);
+	});
+}
+
+function reiniciar_anio() {
+	request('utilidades/reiniciar.php', false, function(data) {
+		switch(data) {
+			case '0':
+				window.location = './';
+				break;
+			case '1':
+				document.getElementById('errores').innerHTML += '<div class="err">No se ha podido reiniciar el año</div>';
+				break;
+			case '2':
+				document.getElementById('errores').innerHTML += '<div class="err">Fallo en conexión a la base de datos. Por favor inténtelo más tarde</div>';
+				break;
+			case '3':
+				document.getElementById('errores').innerHTML += '<div class="err">No tienes permiso para publicar o no seleccionó contenido</div>';
+				break;
+			default:
+				document.getElementById('errores').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';
+		}
+		setTimeout(function() {
+			document.getElementById('errores').style.transition = transition;
+			document.getElementById('errores').style.opacity = 1;
+		}, 10);
 	});
 }

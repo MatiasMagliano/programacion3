@@ -5,8 +5,16 @@
   --color: #fefefe;
   --dull: #b8b8b8;
   --error: #e74c3c;
-  --highlight: rgba(255,255,255,.05);
- }
+  --highlight: rgba(255, 255, 255, .05);
+}
+
+.navbar-nav,
+.mr-auto {
+  flex: 1;
+  margin: auto !important;
+  display: flex;
+  justify-content: space-between;
+}
 
 .form-signin {
   width: 100%;
@@ -42,12 +50,12 @@
 }
 
 .err {
-	margin: 5px 0;
-	color: var(--error);
+  margin: 5px 0;
+  color: var(--error);
 }
 
 .err ul {
-	list-style-type: none;
-	margin: 0;
-	padding-inline-start: 2em;
+  list-style-type: none;
+  margin: 0;
+  padding-inline-start: 2em;
 }

@@ -1,5 +1,5 @@
 <?php
-    require_once 'utilidades/utils.php';
+    require_once '../utilidades/utils.php';
 
     $conexion = conectar_base();
 
@@ -19,10 +19,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- BOOTSTRAP 5.0 -->
-    <link rel="stylesheet" href="<?=dirname($_SERVER['PHP_SELF']) . '/css/bootstrap.min.css';?>">
+    <link rel="stylesheet" href="<?=base_path('bootstrap.min.css', 'css', true);?>">
 
     <!-- ESTILOS PROPIOS -->
-    <link rel="stylesheet" href="<?=dirname($_SERVER['PHP_SELF']) . '/css/estilos.css';?>">
+    <link rel="stylesheet" href="<?=base_path('estilos.css', 'css', true);?>">
     <title>Bienvenidos a PROGRAMACION III</title>
 </head>
 
@@ -30,7 +30,7 @@
 
     <header class="bg-light py-4 text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold">PUBLICAR CONTENIDO</h1>
+            <h1 class="display-4 fw-bold">Nuevo contenido</h1>
         </div>
     </header>
 
@@ -40,29 +40,13 @@
             echo '<div class="text-center"><a href="login.php">Iniciar sesión</a></div>';
         }
         else {  
-            include "./utilidades/navbar.php";
+            include base_path('navbar.php', 'utilidades', true);
         }
     ?>
 
 
     <main class="my-5">
-        <h2 class="text-center">Seleccione un contenido a publicar</h2>
 
-        <div id="errores" class="errorcontainer"></div>
-        
-        <form id="formPublicarContenido">
-            <?php
-                $campos = array(
-                    0 => "id",
-                    1=> "titulo as valor",
-                );
-                echo crearSelect($conexion, "contenidos", $campos, "contenido", "Seleccione un contenido...");
-                $conexion->close();
-            ?>
-
-            <br>
-            <div class="w-10 btn btn-lg btn-success" style="float: right;" onclick="publicar();">Publicar</div>
-        </form>
     </main>
 
     <footer class="fixed-bottom bg-light text-center py-3">
@@ -72,8 +56,8 @@
         </div>
     </footer>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="<?=base_path('bootstrap.bundle.min.js', 'js', true);?>"></script>
+    <script src="<?=base_path('scripts.js', 'js', true);?>"></script>
 
 </body>
 

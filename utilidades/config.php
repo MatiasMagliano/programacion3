@@ -1,5 +1,16 @@
 <?php
 
+    // RUTAS
+    switch($_SERVER['SERVER_NAME']){
+        case 'localhost': //development
+          define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/02_DESARROLLO/programacion3/');
+          break;
+        case 'your-site.com': //production
+          define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/your-project-directory-on-production-server/');
+          break;
+      }
+      
+
     // BASE DE DATOS
     define('NOMBRE_SERVIDOR', 'localhost');
     define('NOMBRE_USUARIO','root');
