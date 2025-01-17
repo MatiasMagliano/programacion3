@@ -33,7 +33,7 @@ class Router
 
                 foreach ($routeData['middlewares'] as $middlewareName) {
                     if (!isset($this->middlewares[$middlewareName])) {
-                        throw new Exception("Middleware '$middlewareName' not found.");
+                        throw new Exception("Middleware '$middlewareName' no encontrado.");
                     }
 
                     if (!$this->middlewares[$middlewareName]()) {

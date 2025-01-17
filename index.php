@@ -4,13 +4,14 @@
     $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
     require "Router.php";
+    require_once "utilidades/utils.php";
 
     $router = new Router();
 
     
     // DECLARACIÓN DEL middleware de autenticación "auth"
     $router->middleware('auth', function () {
-        return isset($_SESSION['loggedin']) && $_SESSION['userID'] !== null;
+        return isset($_SESSION['loggedin']) && $_SESSION['userID'] !== null; //  
     });
 
 
