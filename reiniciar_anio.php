@@ -19,10 +19,10 @@ if ($res && $res->num_rows === 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- BOOTSTRAP 5.0 -->
-    <link rel="stylesheet" href="<?= dirname($_SERVER['PHP_SELF']) . '/css/bootstrap.min.css'; ?>">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- ESTILOS PROPIOS -->
-    <link rel="stylesheet" href="<?= dirname($_SERVER['PHP_SELF']) . '/css/estilos.css'; ?>">
+    <link rel="stylesheet" href="/css/estilos.css">
     <title>Bienvenidos a PROGRAMACION III</title>
 </head>
 
@@ -60,8 +60,8 @@ if ($res && $res->num_rows === 1) {
         </div>
     </main>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/scripts.js"></script>
 
 </body>
 

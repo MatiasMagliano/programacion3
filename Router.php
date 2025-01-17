@@ -1,10 +1,11 @@
 <?php
 
-    declare(strict_types= 1);
+    declare(strict_types=1);
 
-    class Router{
+    class Router
+    {
 
-        private $routes = [];
+        private array $routes = [];
 
         public function add(string $path, Closure $handler): void
         {

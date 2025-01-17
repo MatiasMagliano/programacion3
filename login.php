@@ -1,10 +1,5 @@
 <?php
     require_once 'utilidades/utils.php';
-
-    // $conexion = conectar_base();
-
-    // $hash = password_hash('mmagliano', PASSWORD_DEFAULT);
-    // $id = sqlInsert($conexion, 'INSERT INTO users VALUES (NULL, ?, ?, ?, 0)', 'sss', 'Matías Magliano', 'magliano.matias@gmail.com', $hash);
 ?>
 
 <!DOCTYPE html>
@@ -17,10 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- BOOTSTRAP 5.0 -->
-    <link rel="stylesheet" href="<?=dirname($_SERVER['PHP_SELF']) . '/css/bootstrap.min.css';?>">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- ESTILOS PROPIOS -->
-    <link rel="stylesheet" href="<?=dirname($_SERVER['PHP_SELF']) . '/css/estilos.css';?>">
+    <link rel="stylesheet" href="/css/estilos.css">
 
     <title>Ingresar a PROGRAMACION III</title>
 
@@ -63,7 +58,8 @@
         </form>
     </main>
 
-    <script src="./js/scripts.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/scripts.js"></script>
 </body>
 
 </html>

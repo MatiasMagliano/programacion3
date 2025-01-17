@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light ">
     <div class="container-fluid ">
-        <a class="navbar-brand" href="<?= ROOT_PATH.'index.php' ?>">Inicio</a>
+        <a class="navbar-brand" href="/">Inicio</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item"
-                                href="<?= ROOT_PATH.'/contenidos/nuevo_contenido.php'; ?>">Nuevo
+                                href="/contenidos/nuevo_contenido">Nuevo
                                 contenido</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -44,11 +44,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-danger" href="<?= ROOT_PATH.'reiniciar_anio.php'; ?>">Reiniciar año</a>
+                    <a class="nav-link text-danger" href="/reiniciar_anio">Reiniciar año</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_path('publicar_contenido.php', '/'); ?>">Publicar contenido</a>
+                    <a class="nav-link" href="/publicar_contenido">Publicar contenido</a>
                 </li>
 
 

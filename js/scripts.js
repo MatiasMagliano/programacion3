@@ -31,7 +31,7 @@ function login() {
 		document.getElementById('errores').style.opacity = 0;
 		switch(data) {
 			case '0':
-				window.location = './';
+				window.location = '/';
 				break;
 			case '1':
 				document.getElementById('errores').innerHTML += '<div class="err">Nombre de usuario o contraseña incorrectos</div>';
@@ -58,7 +58,7 @@ function login() {
 function logout() {
 	request('utilidades/salir.php', false, function(data) {
 		if(data === '0') {
-			window.location = 'index.php';
+			window.location = '/';
 		}
 	});
 }
