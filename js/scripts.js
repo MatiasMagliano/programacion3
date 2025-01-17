@@ -108,7 +108,7 @@ function reiniciar_anio() {
 				document.getElementById('errores').innerHTML += '<div class="err">Fallo en conexión a la base de datos. Por favor inténtelo más tarde</div>';
 				break;
 			case '3':
-				document.getElementById('errores').innerHTML += '<div class="err">No tienes permiso para publicar o no seleccionó contenido</div>';
+				document.getElementById('errores').innerHTML += '<div class="err">Usted no tiene permiso para publicar o no seleccionó contenido</div>';
 				break;
 			default:
 				document.getElementById('errores').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';

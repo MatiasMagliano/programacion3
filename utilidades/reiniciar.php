@@ -1,8 +1,14 @@
 <?php
-    require_once 'utils.php';
+require_once 'utils.php';
 
-    if (isset($_POST['csrf_token']) && validarToken($_POST['csrf_token'])) {
+if (isset($_POST['csrf_token']) && validarToken($_POST['csrf_token'])) {
 
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+
+        echo 3;
+
+    } else {
+        
         $conexion = conectar_base();
 
         if ($conexion) {
@@ -14,5 +20,7 @@
                 echo 1;
         } else
             echo 2;
-    } else
-        echo 3;
+    }
+
+} else
+    echo 3;

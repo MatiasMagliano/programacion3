@@ -1,24 +1,55 @@
 <?php
 
-    declare(strict_types=1);
+declare(strict_types=1);
 
-    class Router
+class Router
+{
+
+    private array $routes = [];
+    private array $middlewares = [];
+
+    public function add(string $path, Closure $handler, array $middlewares = []): void
     {
+        $this->routes[$path] = [
+            'handler' => $handler,
+            'middlewares' => $middlewares,
+        ];
+    }
 
-        private array $routes = [];
+    public function middleware(string $name, Closure $middleware): void
+    {
+        $this->middlewares[$name] = $middleware;
+    }
 
-        public function add(string $path, Closure $handler): void
-        {
-            $this->routes[$path] = $handler;
-        }
+    public function dispatch(string $path): void
+    {
+        foreach ($this->routes as $route => $routeData) {
 
-        public function dispatch(string $path):void
-        {
-            if(array_key_exists($path, $this->routes)){
-                $handler = $this->routes[$path];
-                call_user_func($handler);
-            }else{
-                echo 'Página no encontrada';
+            $pattern = preg_replace("#\{\w+\}#", "([^\/]+)", $route);
+
+            if (preg_match("#^$pattern$#", $path, $matches)) {
+
+                array_shift($matches);
+
+                foreach ($routeData['middlewares'] as $middlewareName) {
+                    if (!isset($this->middlewares[$middlewareName])) {
+                        throw new Exception("Middleware '$middlewareName' not found.");
+                    }
+
+                    if (!$this->middlewares[$middlewareName]()) {
+                        // fallo del middleware --> SALIDA
+                        // header("Location: /login");
+                        include "utilidades/401.php";
+                        exit;
+                    }
+                }
+
+                call_user_func_array($routeData['handler'], $matches);
+
+                return;
             }
         }
+
+        include "utilidades/404.php";
     }
+}

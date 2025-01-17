@@ -7,7 +7,15 @@
 
     $router = new Router();
 
-    // declaración de rutas
+    
+    // DECLARACIÓN DEL middleware de autenticación "auth"
+    $router->middleware('auth', function () {
+        return isset($_SESSION['loggedin']) && $_SESSION['userID'] !== null;
+    });
+
+
+
+    // DECLARACIÓN DE RUTAS
     $router->add("/", function(){
         include "landing.php";
     });
@@ -26,6 +34,10 @@
 
     $router->add('/contenidos/nuevo_contenido', function(){
         include "contenidos/nuevo_contenido.php";
+    }, ['auth']);
+
+    $router->add('/contenidos/{id}', function($id){
+        echo "Esta es la página del contenido: $id";
     });
 
     $router->dispatch($path);

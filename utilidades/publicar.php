@@ -1,7 +1,14 @@
 <?php
-    require_once 'utils.php';
+require_once 'utils.php';
 
-    if (isset($_POST['contenido']) && isset($_POST['csrf_token']) && validarToken($_POST['csrf_token'])) {
+if (isset($_POST['contenido']) && isset($_POST['csrf_token']) && validarToken($_POST['csrf_token'])) {
+
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+
+        echo 3;
+
+    } else {
+        
         $id_contenido = $_POST['contenido'];
 
         $conexion = conectar_base();
@@ -15,5 +22,6 @@
                 echo 2;
         } else
             echo 2;
-    } else
-        echo 3;
+    }
+} else
+    echo 3;
