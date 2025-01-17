@@ -48,7 +48,46 @@ if ($res && $res->num_rows === 1) {
 
     <main class="my-5">
         <form id="formNuevoContenido">
-            <textarea id="summernote" name="nuevo_contenido"></textarea>
+            <h1 class="h3 mb-3 fw-normal">Nuevo contenido de la cátedra</h1>
+
+            <div id="errores" class="errorcontainer"></div>
+
+            <div class="row my-3">
+                <div class="col">
+                    <label for="tipo_contenido">Tipo de contenido *</label>
+                    <select class="form-select" name="tipo_contenido" id="tipo_contenido" required>
+                        <option selected></option>
+                        <option value="front-end">FRONT-END</option>
+                        <option value="back-end">BACK-END</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="nro_contenido">Número de orden *</label>
+                    <input type="text" name="nro_contenido" id="nro_contenido"
+                        onkeydown="if(event.key === 'Enter'){event.preventDefault();nuevo_contenido();}"
+                        class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col">
+                    <label for="titulo">Título del contenido *</label>
+                    <input type="text" name="titulo" id="titulo"
+                        onkeydown="if(event.key === 'Enter'){event.preventDefault();nuevo_contenido();}"
+                        class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="fecha_publicacion">Fecha de publicación *</label>
+                    <input type="date" name="fecha_publicacion" id="fecha_publicacion"
+                        onkeydown="if(event.key === 'Enter'){event.preventDefault();nuevo_contenido();}"
+                        class="form-control" required>
+                </div>
+            </div>
+
+            <div class="my-3">
+                <label for="contenido">Texto del contenido *</label>
+                <textarea id="contenido" name="contenido" required></textarea>
+            </div>
         </form>
     </main>
 
@@ -64,7 +103,7 @@ if ($res && $res->num_rows === 1) {
     <script src="/js/summernote-lite.min.js"></script>
     <script src="/js/scripts.js"></script>
     <script>
-        $('#summernote').summernote({
+        $('#contenido').summernote({
             tabsize: 2,
             height: 120,
             toolbar: [
