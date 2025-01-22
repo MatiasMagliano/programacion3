@@ -4,9 +4,9 @@ function request(url, data, callback) {
 	var loader = document.createElement('div');
 	loader.className = 'loader';
 	document.body.appendChild(loader);
-	xhr.addEventListener('readystatechange', function() {
-		if(xhr.readyState === 4) {
-			if(callback) {
+	xhr.addEventListener('readystatechange', function () {
+		if (xhr.readyState === 4) {
+			if (callback) {
 				callback(xhr.response);
 			}
 			loader.remove();
@@ -16,7 +16,7 @@ function request(url, data, callback) {
 	var formdata = data ? (data instanceof FormData ? data : new FormData(document.querySelector(data))) : new FormData();
 
 	var csrfMetaTag = document.querySelector('meta[name="csrf_token"]');
-	if(csrfMetaTag) {
+	if (csrfMetaTag) {
 		formdata.append('csrf_token', csrfMetaTag.getAttribute('content'));
 	}
 
@@ -24,12 +24,12 @@ function request(url, data, callback) {
 }
 
 function login() {
-	request('utilidades/autenticar.php', '#formularioLogin', function(data) {
+	request('utilidades/autenticar.php', '#formularioLogin', function (data) {
 		document.getElementById('errores').innerHTML = "";
 		var transition = document.getElementById('errores').style.transition;
 		document.getElementById('errores').style.transition = "none";
 		document.getElementById('errores').style.opacity = 0;
-		switch(data) {
+		switch (data) {
 			case '0':
 				window.location = '/';
 				break;
@@ -48,7 +48,7 @@ function login() {
 			default:
 				document.getElementById('errores').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';
 		}
-		setTimeout(function() {
+		setTimeout(function () {
 			document.getElementById('errores').style.transition = transition;
 			document.getElementById('errores').style.opacity = 1;
 		}, 10);
@@ -56,20 +56,20 @@ function login() {
 }
 
 function logout() {
-	request('/utilidades/salir.php', false, function(data) {
-		if(data === '0') {
+	request('/utilidades/salir.php', false, function (data) {
+		if (data === '0') {
 			window.location = '/';
 		}
 	});
 }
 
 function publicar(id) {
-	request('utilidades/publicar.php', '#formPublicarContenido', function(data) {
+	request('utilidades/publicar.php', '#formPublicarContenido', function (data) {
 		document.getElementById('errores').innerHTML = "";
 		var transition = document.getElementById('errores').style.transition;
 		document.getElementById('errores').style.transition = "none";
 		document.getElementById('errores').style.opacity = 0;
-		switch(data) {
+		switch (data) {
 			case '0':
 				window.location = '/';
 				break;
@@ -88,7 +88,7 @@ function publicar(id) {
 			default:
 				document.getElementById('errores').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';
 		}
-		setTimeout(function() {
+		setTimeout(function () {
 			document.getElementById('errores').style.transition = transition;
 			document.getElementById('errores').style.opacity = 1;
 		}, 10);
@@ -96,8 +96,8 @@ function publicar(id) {
 }
 
 function reiniciar_anio() {
-	request('utilidades/reiniciar.php', false, function(data) {
-		switch(data) {
+	request('utilidades/reiniciar.php', false, function (data) {
+		switch (data) {
 			case '0':
 				window.location = '/';
 				break;
@@ -113,7 +113,7 @@ function reiniciar_anio() {
 			default:
 				document.getElementById('errores').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';
 		}
-		setTimeout(function() {
+		setTimeout(function () {
 			document.getElementById('errores').style.transition = transition;
 			document.getElementById('errores').style.opacity = 1;
 		}, 10);
@@ -121,12 +121,12 @@ function reiniciar_anio() {
 }
 
 function nuevo_contenido() {
-	request('/utilidades/proc_nuevo_contenido.php', '#formNuevoContenido', function(data) {
+	request('/utilidades/proc_nuevo_contenido.php', '#formNuevoContenido', function (data) {
 		document.getElementById('errores').innerHTML = "";
 		var transition = document.getElementById('errores').style.transition;
 		document.getElementById('errores').style.transition = "none";
 		document.getElementById('errores').style.opacity = 0;
-		switch(data) {
+		switch (data) {
 			case '0':
 				window.location = '/';
 				break;
@@ -140,12 +140,44 @@ function nuevo_contenido() {
 				document.getElementById('errores').innerHTML += '<div class="err">Complete los campos requeridos.</div>';
 				break;
 			case '4':
-				document.getElementById('errores').innerHTML += '<div class="err">Error de método no tienes permiso para agregar contenido.</div>';
+				document.getElementById('errores').innerHTML += '<div class="err">Error de método o no tiene permisos para agregar contenido.</div>';
 				break;
 			default:
 				document.getElementById('errores').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';
 		}
-		setTimeout(function() {
+		setTimeout(function () {
+			document.getElementById('errores').style.transition = transition;
+			document.getElementById('errores').style.opacity = 1;
+		}, 10);
+	});
+}
+
+function nuevo_contenido() {
+	request('/utilidades/proc_borrar_contenido.php', '#formBorrarContenido', function (data) {
+		document.getElementById('errores').innerHTML = "";
+		var transition = document.getElementById('errores').style.transition;
+		document.getElementById('errores').style.transition = "none";
+		document.getElementById('errores').style.opacity = 0;
+		switch (data) {
+			case '0':
+				window.location = '/';
+				break;
+			case '1':
+				document.getElementById('errores').innerHTML += '<div class="err">Error de token CSRF. No se ha podido borrar el contenido.</div>';
+				break;
+			case '2':
+				document.getElementById('errores').innerHTML += '<div class="err">Fallo en conexión a la base de datos. Por favor inténtelo más tarde</div>';
+				break;
+			case '3':
+				document.getElementById('errores').innerHTML += '<div class="err">Complete los campos requeridos.</div>';
+				break;
+			case '4':
+				document.getElementById('errores').innerHTML += '<div class="err">Error de método o no tiene permisos para borrar contenido.</div>';
+				break;
+			default:
+				document.getElementById('errores').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';
+		}
+		setTimeout(function () {
 			document.getElementById('errores').style.transition = transition;
 			document.getElementById('errores').style.opacity = 1;
 		}, 10);
