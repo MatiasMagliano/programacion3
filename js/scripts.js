@@ -128,16 +128,19 @@ function nuevo_contenido() {
 		document.getElementById('errores').style.opacity = 0;
 		switch(data) {
 			case '0':
-				window.location = '/contenidos/nuevo_contenido';
+				window.location = '/';
 				break;
 			case '1':
-				document.getElementById('errores').innerHTML += '<div class="err">No se ha podido agregar el contenido.</div>';
+				document.getElementById('errores').innerHTML += '<div class="err">Error de token CSRF. No se ha podido agregar el contenido.</div>';
 				break;
 			case '2':
 				document.getElementById('errores').innerHTML += '<div class="err">Fallo en conexión a la base de datos. Por favor inténtelo más tarde</div>';
 				break;
 			case '3':
-				document.getElementById('errores').innerHTML += '<div class="err">No tienes permiso para agregar contenido o no completó los campos requeridos</div>';
+				document.getElementById('errores').innerHTML += '<div class="err">Complete los campos requeridos.</div>';
+				break;
+			case '4':
+				document.getElementById('errores').innerHTML += '<div class="err">Error de método no tienes permiso para agregar contenido.</div>';
 				break;
 			default:
 				document.getElementById('errores').innerHTML += '<div class="err">An unknown error occurred. Please try again later.</div>';

@@ -25,6 +25,10 @@
         include "login.php";
     });
 
+    $router->add('/logout', function(){
+        include "utilidades/salir.php";
+    });
+
     $router->add('/publicar_contenido', function(){
         include "publicar_contenido.php";
     });
@@ -35,6 +39,10 @@
 
     $router->add('/contenidos/nuevo_contenido', function(){
         include "contenidos/nuevo_contenido.php";
+    }, ['auth']);
+
+    $router->add('/contenidos/proc_nuevo_contenido', function(){
+        include "/utilidades/proc_nuevo_contenido.php";
     }, ['auth']);
 
     $router->add('/contenidos/{id}', function($id){

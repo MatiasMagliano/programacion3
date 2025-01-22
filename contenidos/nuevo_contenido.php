@@ -85,9 +85,14 @@ if ($res && $res->num_rows === 1) {
             </div>
 
             <div class="my-3">
-                <label for="contenido">Texto del contenido *</label>
-                <textarea id="contenido" name="contenido" required></textarea>
+                <label for="referencia">Texto del contenido *</label>
+                <textarea id="referencia" name="referencia" required></textarea>
             </div>
+
+            <br>
+            <!-- action="/contenidos/proc_nuevo_contenido" method="post" -->
+            <!-- <button class="w-10 btn btn-lg btn-success" style="float: right;" type="submit">Guardar</button> -->
+            <div class="w-10 btn btn-lg btn-success" style="float: right;" onclick="nuevo_contenido();">Publicar</div>
         </form>
     </main>
 
@@ -103,7 +108,7 @@ if ($res && $res->num_rows === 1) {
     <script src="/js/summernote-lite.min.js"></script>
     <script src="/js/scripts.js"></script>
     <script>
-        $('#contenido').summernote({
+        $('#referencia').summernote({
             tabsize: 2,
             height: 120,
             toolbar: [
