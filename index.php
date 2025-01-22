@@ -41,12 +41,14 @@
         include "contenidos/nuevo_contenido.php";
     }, ['auth']);
 
-    $router->add('/contenidos/proc_nuevo_contenido', function(){
-        include "/utilidades/proc_nuevo_contenido.php";
+    $router->add('/contenidos/borrar_contenido', function(){
+        include "contenidos/borrar_contenido.php";
     }, ['auth']);
 
     $router->add('/contenidos/{id}', function($id){
-        echo "Esta es la página del contenido: $id";
+        echo 'Esta es la página del contenido ' .$id;
+        $contenido_id = $id;
+        include 'contenidos/ver_contenido.php'; // contiene el contenido + desarrollo y los adjuntos.
     });
 
     $router->dispatch($path);

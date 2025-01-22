@@ -16,7 +16,7 @@
                         <li><a class="dropdown-item"
                                 href="/contenidos/nuevo_contenido">Nuevo
                                 contenido</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="/contenidos/borrar_contenido">Borrar contenido</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>

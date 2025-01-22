@@ -78,17 +78,16 @@
                                     if ($publicado)
                                         echo romano($item["nro_contenido"]) . " - " . $item["titulo"];
                                     else
-                                        echo romano($item["nro_contenido"]) . " - " . $item["titulo"] . " - <span class='text-danger'>PUBLICACIÓN NO DISPONIBLE TODAVÍA</span>";
+                                        echo romano($item["nro_contenido"]) . " - " . $item["titulo"] . " - <span class='text-danger'>&nbsp;PUBLICACIÓN NO DISPONIBLE TODAVÍA</span>";
                                     ?>
                                 </button>
                             </h2>
                             <div id="<?= $collapseId; ?>" class="accordion-collapse collapse"
                                 aria-labelledby="<?= $headingId; ?>" data-bs-parent="#acordionFront">
                                 <div class="accordion-body">
-                                    <strong><?= $item["titulo"]; ?></strong>
                                     <p><?= $item["referencia"]; ?></p>
-                                    <a href="desarrollo.php?contenido=<?= $item["id"]; ?>" target="_blank"
-                                        rel="noopener noreferrer">Ir a desarrollo</a>
+                                    <a href="/contenidos/<?= $item["id"]; ?>" target="_blank"
+                                        rel="noopener noreferrer">Ver contenido</a>
                                 </div>
                             </div>
                         </div>
