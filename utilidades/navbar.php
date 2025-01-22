@@ -59,7 +59,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li>
-                            <div class="btn" onclick="logout();">Salir</div>
+                            <a onclick="logout()" href="javascript:void(0);" class="dropdown-item">Salir</a>
                         </li>
                     </ul>
                 </li>

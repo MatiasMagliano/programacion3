@@ -56,7 +56,7 @@ function login() {
 }
 
 function logout() {
-	request('utilidades/salir.php', false, function(data) {
+	request('/utilidades/salir.php', false, function(data) {
 		if(data === '0') {
 			window.location = '/';
 		}
@@ -71,7 +71,7 @@ function publicar(id) {
 		document.getElementById('errores').style.opacity = 0;
 		switch(data) {
 			case '0':
-				window.location = './';
+				window.location = '/';
 				break;
 			case '1':
 				document.getElementById('errores').innerHTML += '<div class="err">No se ha podido publicar el anuncio</div>';
@@ -99,7 +99,7 @@ function reiniciar_anio() {
 	request('utilidades/reiniciar.php', false, function(data) {
 		switch(data) {
 			case '0':
-				window.location = './';
+				window.location = '/';
 				break;
 			case '1':
 				document.getElementById('errores').innerHTML += '<div class="err">No se ha podido reiniciar el año</div>';
@@ -121,14 +121,14 @@ function reiniciar_anio() {
 }
 
 function nuevo_contenido() {
-	request('utilidades/publicar.php', '#formPublicarContenido', function(data) {
+	request('/utilidades/proc_nuevo_contenido.php', '#formNuevoContenido', function(data) {
 		document.getElementById('errores').innerHTML = "";
 		var transition = document.getElementById('errores').style.transition;
 		document.getElementById('errores').style.transition = "none";
 		document.getElementById('errores').style.opacity = 0;
 		switch(data) {
 			case '0':
-				window.location = './';
+				window.location = '/contenidos/nuevo_contenido';
 				break;
 			case '1':
 				document.getElementById('errores').innerHTML += '<div class="err">No se ha podido agregar el contenido.</div>';
