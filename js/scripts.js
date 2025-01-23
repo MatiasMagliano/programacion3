@@ -13,7 +13,9 @@ function request(url, data, callback) {
 		}
 	});
 
-	var formdata = data ? (data instanceof FormData ? data : new FormData(document.querySelector(data))) : new FormData();
+	//var formdata = data ? (data instanceof FormData ? data : new FormData(document.querySelector(data))) : new FormData();
+	var formdata = new FormData(document.querySelector(data));
+	console.log(formdata)
 
 	var csrfMetaTag = document.querySelector('meta[name="csrf_token"]');
 	if (csrfMetaTag) {
@@ -152,7 +154,7 @@ function nuevo_contenido() {
 	});
 }
 
-function nuevo_contenido() {
+function borrar_contenido() {
 	request('/utilidades/proc_borrar_contenido.php', '#formBorrarContenido', function (data) {
 		document.getElementById('errores').innerHTML = "";
 		var transition = document.getElementById('errores').style.transition;

@@ -75,10 +75,10 @@
                                     data-bs-toggle="collapse" data-bs-target="#<?= $collapseId; ?>" aria-expanded="true"
                                     aria-controls="<?= $collapseId; ?>" <?= $publicado ? '' : 'disabled'; ?>>
                                     <?php
-                                    if ($publicado)
-                                        echo romano($item["nro_contenido"]) . " - " . $item["titulo"];
-                                    else
-                                        echo romano($item["nro_contenido"]) . " - " . $item["titulo"] . " - <span class='text-danger'>&nbsp;PUBLICACIÓN NO DISPONIBLE TODAVÍA</span>";
+                                        if ($publicado)
+                                            echo romano($item["nro_contenido"]) . " - " . $item["titulo"] .'&nbsp;&nbsp;&nbsp;fecha publicación: ' . date('d/m/Y', strtotime($item['fecha_publicacion']));
+                                        else
+                                            echo romano($item["nro_contenido"]) . " - " . $item["titulo"] . " - <span class='text-danger'>&nbsp;PUBLICACIÓN NO DISPONIBLE TODAVÍA</span>";
                                     ?>
                                 </button>
                             </h2>
@@ -120,10 +120,10 @@
                                     data-bs-toggle="collapse" data-bs-target="#<?= $collapseId; ?>" aria-expanded="true"
                                     aria-controls="<?= $collapseId; ?>" <?= $publicado ? '' : 'disabled'; ?>>
                                     <?php
-                                    if ($publicado)
-                                        echo $item["nro_contenido"] . " - " . $item["titulo"];
-                                    else
-                                        echo $item["nro_contenido"] . " - " . $item["titulo"] . " - PUBLICACIÓN NO DISPONIBLE TODAVÍA";
+                                        if ($publicado)
+                                            echo romano($item["nro_contenido"]) . " - " . $item["titulo"] .'&nbsp;&nbsp;&nbsp;fecha publicación: ' . date('d/m/Y', strtotime($item['fecha_publicacion']));
+                                        else
+                                            echo romano($item["nro_contenido"]) . " - " . $item["titulo"] . " - <span class='text-danger'>&nbsp;PUBLICACIÓN NO DISPONIBLE TODAVÍA</span>";
                                     ?>
                                 </button>
                             </h2>
