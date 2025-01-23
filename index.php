@@ -46,7 +46,6 @@
     }, ['auth']);
 
     $router->add('/contenidos/{id}', function($id){
-        echo 'Esta es la página del contenido ' .$id;
         $contenido_id = $id;
         include 'contenidos/ver_contenido.php'; // contiene el contenido + desarrollo y los adjuntos.
     });
