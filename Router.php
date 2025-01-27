@@ -50,6 +50,8 @@ class Router
             }
         }
 
+        // Se responde correctamente con código de error 404
+        http_response_code(404);
         include "utilidades/404.php";
     }
 }
