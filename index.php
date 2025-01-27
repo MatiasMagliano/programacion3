@@ -45,9 +45,15 @@
         include "contenidos/borrar_contenido.php";
     }, ['auth']);
 
+    // Ruta para ver el contenido + desarrollo + adjuntos.
     $router->add('/contenidos/{id}', function($id){
         $contenido_id = $id;
-        include 'contenidos/ver_contenido.php'; // contiene el contenido + desarrollo y los adjuntos.
+        include 'contenidos/ver_contenido.php'; 
+    });
+
+    // Ruta para descarga de los adjuntos.
+    $router->add('/descargas/{archivo}', function($archivo){
+        include 'utilidades/descargar_adjuntos.php';
     });
 
     $router->dispatch($path);

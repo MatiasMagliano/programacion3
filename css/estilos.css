@@ -16,6 +16,31 @@
   justify-content: space-between;
 }
 
+.titulo-contenido {
+  color: #4c327c;
+  background-color: #b88dff;
+}
+
+.card-descargas {
+  background: linear-gradient(180deg, #fff4c2, #e7bf3a);
+  color: #000;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.contenedor-adjuntos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
+}
+
+.archivo {
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -67,6 +92,42 @@
 .custom-btn:hover {
   background-color: #f3e8ff !important;
   transition: background-color 0.3s ease-in-out;
+}
+
+.loader {
+  height: 64px;
+  width: 64px;
+  position: fixed;
+  top: calc(50% - 32px);
+  left: calc(50% - 32px);
+  border: 2px solid var(--highlight);
+  border-left: 2px solid var(--color);
+  border-radius: 50%;
+  -webkit-animation: loader 1.5s linear infinite;
+  -moz-animation: loader 1.5s linear infinite;
+  -ms-animation: loader 1.5s linear infinite;
+  -o-animation: loader 1.5s linear infinite;
+  animation: loader 1.5s linear infinite;
+}
+
+@-webkit-keyframes loader {
+  to {
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  to {
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
