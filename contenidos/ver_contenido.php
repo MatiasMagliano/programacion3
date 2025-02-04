@@ -1,8 +1,5 @@
-<?php
-require_once 'utilidades/utils.php';
-
+<?php require_once 'utilidades/utils.php';
 $conexion = conectar_base();
-
 $res = sqlSelect(
     $conexion,
     "SELECT * FROM contenidos WHERE contenidos.id = ?",
@@ -21,24 +18,16 @@ if ($res && $res->num_rows === 1) {
         $contenido_id
     );
 
-    // se buscan los adjuntos del contenido "contenido_id"
-    $res_adj = sqlSelect(
-        $conexion,
-        "SELECT * FROM adjuntos WHERE adjuntos.id_contenido=?",
-        "i",
-        $contenido_id
-    );
-
-    if (($res_ddrr && $res_ddrr->num_rows > 0) && ($res_adj && $res_adj->num_rows > 0)) {
+    if (($res_ddrr && $res_ddrr->num_rows > 0)) {
         while ($linea = $res_ddrr->fetch_assoc()) {
             $contenido["desarrollos"][] = $linea;
         }
-
-        while ($linea = $res_adj->fetch_assoc()) {
-            $contenido["adjuntos"][] = $linea;
-        }
     } else {
-        $contenido["desarrollos"][] = "SIN DESARROLLO";
+        $contenido["desarrollos"][] = [
+            "letra_desarrollo"=> "SIN ASIGNAR",
+            "titulo" => "SIN DESARROLLO",
+            "desarrollo" => "SIN DESARROLLO"
+        ];
     }
 } else {
     echo "No se encontraron resultados";
@@ -74,32 +63,6 @@ if ($res && $res->num_rows === 1) {
     </header>
 
     <main>
-        <div class="card card-descargas mt-5 mx-auto">
-            <div class="card-header">
-                <h4 class="fw-bold">Adjuntos</h4>
-            </div>
-            <div class="card-body bg-light">
-                <div class="contenedor-adjuntos">
-                    <?php
-                    foreach ($contenido['adjuntos'] as $adjunto) { ?>
-                        <div class="archivo">
-                            <h5><?= $adjunto['titulo'] ?></h5>
-                            <a href="/descargas/<?= base64_encode($adjunto['path'] . $adjunto['nombre']) ?>"
-                                target="_blank" rel="noopener noreferrer">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
-                                    class="bi bi-file-arrow-down" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5" />
-                                    <path
-                                        d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1" />
-                                </svg>
-                            </a>
-                            <p>Tipo de archivo: <?php echo $adjunto['tipo']; ?></p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </div>
         <div class="card mt-5 mx-auto">
             <div class="card-header">
                 <h4 class="fw-bold">Desarrollo de los temas</h4>
@@ -107,13 +70,43 @@ if ($res && $res->num_rows === 1) {
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <?php
-                    foreach ($contenido['desarrollos'] as $desarrollo) { ?>
+                    foreach ($contenido['desarrollos'] as $desarrollo) { 
+                        $res_adj = sqlSelect(
+                            $conexion,
+                            "SELECT * FROM adjuntos WHERE adjuntos.id_desarrollo=?",
+                            "i",
+                            $desarrollo["id"]
+                        ); ?>
                         <li class="list-group-item">
                             <h5><?= $desarrollo['letra_desarrollo'] ?> - <?= $desarrollo['titulo'] ?></h5>
                             <br>
-                            <p><?= $desarrollo['desarrollo'] ?></p>
+                            <p><?= $desarrollo['desarrollo'] ?></p>                                
                         </li>
-                    <?php } ?>
+                        <!-- selección y enlistado de adjuntos -->
+                        <?php if(($res_adj && $res_adj->num_rows > 0)){ ?>
+                            <li class="list-group-item list-group-item-action active">
+                                <h5>ADJUNTOS</h5>
+                                <div class="contenedor-adjuntos">
+                                    <?php while ($adjunto = $res_adj->fetch_assoc()) { ?>
+                                        <div class="archivo">
+                                            <h5><?= $adjunto['titulo'] ?></h5>
+                                            <a href="/descargas/<?= base64_encode($adjunto['path'] . $adjunto['nombre']) ?>" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+                                                    class="bi bi-file-arrow-down" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5" />
+                                                    <path
+                                                        d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1" />
+                                                </svg>
+                                            </a>
+                                            <p>Tipo de archivo: <?php echo $adjunto['tipo']; ?></p>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </li>
+                        <?php }
+                    } ?>
                 </ul>
             </div>
         </div>
